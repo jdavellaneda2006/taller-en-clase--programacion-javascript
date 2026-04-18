@@ -1,1 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Interno Básico</title>
+</head>
+<body>
 
+    <script>
+        function mostrarCalculos() {
+            let salario = 1750905; // ejemplo
+            let comisiones = 200000;
+            let horasExtras = 100000;
+            let salarioTotal = salario + comisiones + horasExtras;
+
+            document.getElementById("resultado").innerHTML = 
+                "Salario: " + salario + "<br>" +
+                "Comisiones: " + comisiones + "<br>" +
+                "Horas Extras: " + horasExtras + "<br>" +
+                "Salario Total: " + salarioTotal;
+        }
+    </script>
+
+</body>
+</html>
