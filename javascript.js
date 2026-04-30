@@ -1,7 +1,30 @@
-let nombre = "";
-let edad = 0;
-let tipoDocumento = "";
-let numeroDocumento = "";
+function mostrarCalculos() {
+
+let nombre = prompt("Ingrese su nombre:");
+let edad = parseInt(prompt("Ingrese su edad:"));
+let tipoDocumento = prompt("Tipo de documento:");
+let numeroDocumento = prompt("Número de documento:");
+
+function calcularSalud(ibc) {
+  return ibc * 0.04;
+}
+
+function calcularPension(ibc) {
+  return ibc * 0.04;
+}
+
+function calcularFondo(ibc, SMLV) {
+  return ibc >= 4 * SMLV ? ibc * 0.01 : 0;
+}
+
+function calcularARL(ibc, nivel, min, bajo, medio, alto, max) {
+  if (nivel === "minimo") return ibc * min;
+  if (nivel === "bajo") return ibc * bajo;
+  if (nivel === "medio") return ibc * medio;
+  if (nivel === "alto") return ibc * alto;
+  if (nivel === "maximo") return ibc * max;
+  return 0;
+}
 
 if (edad < 18) {
   alert("No puede continuar, es menor de edad");
@@ -10,12 +33,12 @@ if (edad < 18) {
 } else if (edad >= 60) {
   alert("Solo se calculará la pensión, ingrese su mesada pensional");
 } else {
+  
+  let salario = parseFloat(prompt("Ingrese su salario")) || 0; 
+  let comisiones = parseFloat(prompt("Ingrese sus comisiones")) || 0;
+  let horasExtras = parseFloat(prompt("Ingrese sus horas extras")) || 0;
+  let nivelRiesgo = prompt("Nivel de riesgo (minimo, bajo, medio, alto, maximo)").toLowerCase().trim();
 
-  let salario = 0; 
-  let comisiones = 0;
-  let horasExtras = 0;
-  let nivelRiesgo = "";
- 
   const SMLV = 1750905;
   const SMIV = 22761765;
   const subsidio_transporte = 249095;
@@ -28,28 +51,14 @@ if (edad < 18) {
   const ARL_MAXIMO = 0.0696;
 
   const salarioTotal = salario + comisiones + horasExtras;
-
   const ibc = salarioTotal * 0.7;
-
   const auxilio = salario <= 2 * SMLV ? subsidio_transporte : 0;
 
-  const salud = ibc * 0.04;
-  const pension = ibc * 0.04;
-
-  const fondo = ibc >= 4 * SMLV ? ibc * 0.01 : 0;
-
-  let arl = 0;
-  if (nivelRiesgo === "minimo") {
-    arl = ibc * ARL_MINIMO;
-  } else if (nivelRiesgo === "bajo") {
-    arl = ibc * ARL_BAJO;
-  } else if (nivelRiesgo === "medio") {
-    arl = ibc * ARL_MEDIO;
-  } else if (nivelRiesgo === "alto") {
-    arl = ibc * ARL_ALTO;
-  } else if (nivelRiesgo === "maximo") {
-    arl = ibc * ARL_MAXIMO;
-  }
+  
+  const salud = calcularSalud(ibc);
+  const pension = calcularPension(ibc);
+  const fondo = calcularFondo(ibc, SMLV);
+  const arl = calcularARL(ibc, nivelRiesgo, ARL_MINIMO, ARL_BAJO, ARL_MEDIO, ARL_ALTO, ARL_MAXIMO);
 
   const ingresoGravado = salarioTotal - (salud + pension + fondo + arl);
   const ingresoUVT = ingresoGravado / UVT;
@@ -71,18 +80,23 @@ if (edad < 18) {
 
   const deducciones = salud + pension + fondo + arl + retencion;
   const total = salarioTotal + auxilio - deducciones;
+ 
+  document.getElementById("resultado").innerHTML =
+    "Nombre: " + nombre + "<br>" +
+    "Edad: " + edad + "<br>" +
+    "Documento: " + tipoDocumento + " " + numeroDocumento + "<br><br>" +
+    "Salario: " + salario + "<br>" +
+    "IBC: " + ibc + "<br>" +
+    "Auxilio: " + auxilio + "<br>" +
+    "Salud: " + salud + "<br>" +
+    "Pensión: " + pension + "<br>" +
+    "Fondo: " + fondo + "<br>" +
+    "ARL: " + arl + "<br>" +
+    "Retención: " + retencion + "<br>" +
+    "Deducciones: " + deducciones + "<br>" +
+    "Total Neto: " + total;
 
-  console.log("Nombre:", nombre);
-  console.log("Edad:", edad);
-  console.log("Documento:", tipoDocumento, numeroDocumento);
-  console.log("Salario:", salario);
-  console.log("IBC:", ibc);
-  console.log("Auxilio de transporte:", auxilio);
-  console.log("Salud:", salud);
-  console.log("Pensión:", pension);
-  console.log("Fondo de solidaridad:", fondo);
-  console.log("ARL:", arl);
-  console.log("Retención en la fuente:", retencion);
-  console.log("Deducciones totales:", deducciones);
   console.log("Total neto:", total);
+}
+
 }
