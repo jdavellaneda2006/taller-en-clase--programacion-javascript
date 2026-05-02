@@ -2,7 +2,7 @@ function mostrarCalculos() {
 
 let nombre = prompt("Ingrese su nombre:");
 let edad = parseInt(prompt("Ingrese su edad:"));
-let tipoDocumento = prompt("Tipo de documento:")
+let tipoDocumento = prompt("Tipo de documento:");
 let numeroDocumento = prompt("Número de documento:")
 
 function calcularSalud(ibc) {
