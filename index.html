@@ -6,24 +6,48 @@
 </head>
 <body>
 
-    <div id="resultado"></div>
+    <form id="formularioLaboral"
+<h1>Simulador de prestaciones laborales</h1>
+<label for"nombre">Nombre:</label>
+<input 
+type="text"
+id="nombre"
+name="nombre"
+minlength="1"
+maxlength="100"
+required>
 
-    <button onclick="mostrarCalculos()">Calcular</button>
-    
-    <script>
-        function mostrarCalculos() {
-            let salario = 1750905; // ejemplo
-            let comisiones = 200000;
-            let horasExtras = 100000;
-            let salarioTotal = salario + comisiones + horasExtras;
+<label for"edad">Edad:</label>
+<input
+type="number"
+id="edad"
+name="edad"
+minlength="0"
+maxlength="120"
+required>
 
-            document.getElementById("resultado").innerHTML = 
-                "Salario: " + salario + "<br>" +
-                "Comisiones: " + comisiones + "<br>" +
-                "Horas Extras: " + horasExtras + "<br>" +
-                "Salario Total: " + salarioTotal;
-        }
-    </script>
+<label for"tipoDocumento">Tipo de documento:</label>
+
+<select id ="Tipo de documento"
+name="tipoDocumento"
+required>
+<option value="">selecciona el documento de identidad</option>
+<option value="CC">CC</option>
+<option value="TI">TI</option>
+<option value="CE">CE</option>
+<option value="PP">PP</option>
+</select>
+
+<label for="numeroDocumento">Numero de documento</label>
+<input
+type="text"
+id="Número de documento"
+name="numeroDocumento"
+minlength="5"
+maxlength="10"
+required>
+
+</form>
 
 </body>
 </html>
