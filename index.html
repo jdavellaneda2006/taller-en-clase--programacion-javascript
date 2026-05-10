@@ -6,9 +6,10 @@
 </head>
 <body>
 
-    <form id="formularioLaboral"
+    <form id="formularioLaboral">
+        
 <h1>Simulador de prestaciones laborales</h1>
-<label for"nombre">Nombre:</label>
+<label for="nombre">Nombre:</label>
 <input 
 type="text"
 id="nombre"
@@ -17,18 +18,21 @@ minlength="1"
 maxlength="100"
 required>
 
-<label for"edad">Edad:</label>
+<br><br>
+
+<label for="edad">Edad:</label>
 <input
 type="number"
 id="edad"
 name="edad"
-minlength="0"
-maxlength="120"
+min="0"
+max="120"
 required>
 
-<label for"tipoDocumento">Tipo de documento:</label>
+<br><br>
 
-<select id ="Tipo de documento"
+<label for="tipoDocumento">Tipo de documento:</label>
+<select id="tipoDocumento"
 name="tipoDocumento"
 required>
 <option value="">selecciona el documento de identidad</option>
@@ -38,16 +42,86 @@ required>
 <option value="PP">PP</option>
 </select>
 
+<br><br>
+
 <label for="numeroDocumento">Numero de documento</label>
 <input
 type="text"
-id="Número de documento"
+id="numeroDocumento"
 name="numeroDocumento"
 minlength="5"
 maxlength="10"
 required>
 
+ <br><br>
+
+ <label for="salario">Salario:</label>
+
+<input
+type="number"
+id="salario"
+name="salario"
+min="0"
+required>
+
+ <br><br>
+
+<label for="comisiones">Comisiones:</label>
+
+<input
+type="number"
+id="comisiones"
+name="comisiones"
+min="0">
+
+<br><br>
+
+<label for="horasExtras">
+Horas extras:
+</label>
+
+<input
+type="number"
+id="horasExtras"
+name="horasExtras"
+min="0">
+
+<br><br>
+
+<label for="nivelRiesgo">
+Nivel de riesgo:
+</label>
+
+<select
+id="nivelRiesgo"
+name="nivelRiesgo"
+required>
+
+<option value="">
+Seleccione un nivel
+</option>
+
+<option value="minimo">Mínimo</option>
+<option value="bajo">Bajo</option>
+<option value="medio">Medio</option>
+<option value="alto">Alto</option>
+<option value="maximo">Máximo</option>
+
+</select>
+
+<br><br>
+
+<button type="button" onclick="mostrarCalculos()">
+    Calcular
+</button>
+
 </form>
+
+<br>
+
+<div id="resultado"></div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
